@@ -145,21 +145,6 @@ class StorstockolmLokaltrafikAPI:
 			if direction==self.direction:
 				o={"departure_time":departure_time,"destination":m["Destination"],"deviations":m["Deviations"]}
 				self.departures.append(o)
-	
-	def get_voice_tools(self,m):
-		sec=(m["departure_time"]-datetime.now()).seconds
-		mm=(sec//60)%60
-		ss=sec%60
-		o={"remaning_min":mm,"remaning_sec":ss}
-		mm_str="minuter"
-		ss_str="sekunder"
-		if mm==1:
-			mm_str="minut"
-		if ss==1:
-			ss_str="sekund"
-		o["sec_unit"]=ss_str
-		o["min_unit"]=mm_str
-		return o
 
 	def update(self):
 		now=self.get_now_sec()
@@ -170,10 +155,6 @@ class StorstockolmLokaltrafikAPI:
 			elapsed=0
 
 		self.departures = list(filter(lambda x: (x["departure_time"]-datetime.now()).seconds>0, self.departures))
-
-		for i,m in enumerate(self.departures):
-			self.departures[i]["voice_tools"]=self.get_voice_tools(m)
-
 		try:
 			self.data["state"]=self.departures[0]["departure_time"]
 			self.available=True

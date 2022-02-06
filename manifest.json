@@ -1,9 +1,9 @@
 {
   "domain": "storstockholms_lokaltrafik",
   "name": "StorstockholmsLokaltrafik",
-  "documentation": "todo",
+  "documentation": "Booring",
   "dependencies": [],
   "codeowners": ["@maltegruber"],
-  "requirements": ["jsonpath>=0.82"],
-  "version": "v1.0.0"
+  "requirements": [],
+  "version": "v1.0.1"
 }
